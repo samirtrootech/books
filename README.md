@@ -85,6 +85,28 @@ $ npm run start:prod
 ├── tsconfig.json
 ```
 
+## Using Docker Compose
+```sh
+# Build the docker image
+$ docker-compose build
+
+# Start and login to the container
+$ docker-compose up -d
+```
+
+## Testing
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+
 ## API Documentation
 
 **Navigate to localhost:3000/api-docs for Swagger**
