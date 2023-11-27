@@ -37,6 +37,7 @@ describe('BooksController', () => {
   describe('deleteBook', () => {
     it('should delete a book and return updated list', async () => {
       const date = new Date();
+      let result = null;
       // Create two books
       let expectedBooks: any = [
         { id: 1, title: 'Book 1', isbn: '1234567890', createdAt: date, updatedAt: date },
@@ -47,13 +48,15 @@ describe('BooksController', () => {
 
       jest.spyOn(service, 'deleteBook').mockImplementationOnce(async (id: number) => {
         // Simulate book deletion
-        return expectedBooks.filter(book => book.id !== id);
+        result = expectedBooks.filter((user) => {
+          return user.id !== id;
+      });
       });
 
       // Delete the book with id 1
-      const data = await controller.deleteBook(1);
+      await controller.deleteBook(1);
 
-      expect(data).toHaveLength(1);
+      expect(result).toHaveLength(1);
     });
 
     it('should handle NotFoundException when deleting a non-existing book', async () => {
